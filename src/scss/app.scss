@@ -1,0 +1,26 @@
+@import 'fonts';
+@import 'variables';
+@import 'libs/normalize';
+
+body {
+  background-color: $background;
+  padding: 50px 0;
+}
+
+.wrapper {
+  width: calc(100vw - 100px);height: 100%;
+  background-color: #fff;
+  margin: 0 auto;
+  border-radius: 10px;
+  max-width: 1400px;
+}
+
+.sidebar{
+  width: $sidebar-width;
+
+  border-right: 1px solid #F1F1F1;
+  background-color:#f4f6f8;
+  padding: 60px 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
