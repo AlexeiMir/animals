@@ -50,6 +50,9 @@ export interface Cat {
 }
 
 export interface CatsState {
-    items: Cat[],
-    LoadingStatus: LoadingStatus
+    items: Cat[];
+    LoadingStatus: LoadingStatus;
+    pageSize: number;
+    currentPage: number;
+    totalCatsCount: number
 }

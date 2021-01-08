@@ -2,17 +2,18 @@ import React, {useState} from 'react'
 import cn from 'classnames'
 
 type PropsType = {
-    totalItemsCount: number
-    pageSize: number
-    currentPage?: number
-    onPageChanged?: (pageNumber: number) => void
+    totalItemsCount: number;
+    pageSize: number;
+    currentPage?: number;
+    onPageChanged?: (pageNumber: number) => void;
     portionSize?: number
 }
 
-let Paginator: React.FC<PropsType> = ({totalItemsCount, pageSize,
-                                          currentPage = 1,
-                                          onPageChanged = x => x,
-                                          portionSize = 10}) => {
+let Paginator: React.FC<PropsType> = ({
+    totalItemsCount, pageSize,
+    currentPage = 1,
+    onPageChanged = x => x,
+    portionSize = 10}) => {
 
     let pagesCount = Math.ceil(totalItemsCount / pageSize);
 
@@ -28,23 +29,27 @@ let Paginator: React.FC<PropsType> = ({totalItemsCount, pageSize,
     let rightPortionPageNumber = portionNumber * portionSize;
 
 
-    return <div className={cn(styles.paginator)}>
-        { portionNumber > 1 &&
-        <button onClick={() => { setPortionNumber(portionNumber - 1) }}>PREV</button> }
+    return <div className={cn("paginator")}>
+        {portionNumber > 1 &&
+        <button onClick={() => {
+            setPortionNumber(portionNumber - 1)
+        }}>PREV</button>}
 
         {pages
-            .filter(p => p >= leftPortionPageNumber && p<=rightPortionPageNumber)
+            .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
             .map((p) => {
-                return <span className={ cn({
-                    [styles.selectedPage]: currentPage === p
-                }, styles.pageNumber) }
-                             key={p}
-                             onClick={(e) => {
-                                 onPageChanged(p);
-                             }}>{p}</span>
+                return <span className={cn({
+                    ["selectedPage"]: currentPage === p
+                }, "pageNumber")}
+                key={p}
+                onClick={() => {
+                    onPageChanged(p);
+                }}>{p}</span>
             })}
-        { portionCount > portionNumber &&
-        <button onClick={() => { setPortionNumber(portionNumber + 1) }}>NEXT</button> }
+        {portionCount > portionNumber &&
+        <button onClick={() => {
+            setPortionNumber(portionNumber + 1)
+        }}>NEXT</button>}
 
 
     </div>

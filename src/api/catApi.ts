@@ -13,8 +13,9 @@ const instance = axios.create({
 })
 
 export const catApi = {
-    async getCats(): Promise<Cat[]>{
-        const {data} = await instance.get<Response<Cat[]>>('breeds')
+    async getCats(currentPage = 1, totalCatsCount = 10): Promise<Cat[]>{
+        const {data} = await instance.get<Response<Cat[]>>(`breeds?limit=${totalCatsCount}
+        &page=${currentPage}`)
         return data.data
     }
 }

@@ -1,4 +1,5 @@
 module.exports = {
+    "root": false,
     "env": {
         "browser": true,
         "es2021": true
@@ -18,6 +19,9 @@ module.exports = {
         "react"
     ],
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4,
+            {"SwitchCase": 1}
+        ],
+        "react/prop-types": 0
     }
 };

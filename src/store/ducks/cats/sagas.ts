@@ -5,9 +5,15 @@ import {CatsActionsType} from './actionTypes'
 import {LoadingStatus} from './state'
 
 
-export function* fetchCatsRequest() {
+
+export function* fetchCatsRequest({currentPage, totalCatsCount}:
+                                      ReturnType<typeof actions.fetchCats>) {
     try {
-        const items = yield call(catApi.getCats)
+        yield put(actions.setCatsLoadingStatus(LoadingStatus.LOADING))
+        yield put(actions.setCurrentPage(currentPage))
+        yield put(actions.setTotalCatsCount(totalCatsCount))
+        const items = yield call(catApi.getCats,currentPage, totalCatsCount)
+        yield put(actions.setCatsLoadingStatus(LoadingStatus.LOADED))
         yield put(actions.setCats(items))
     } catch (error) {
         yield put(actions.setCatsLoadingStatus(LoadingStatus.ERROR))
